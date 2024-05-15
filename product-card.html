@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ <!-- Bootstrap CSS -->
+
+ <!-- Cuztomized CSS -->
+ <link rel="stylesheet" href="style.css">
+ <!-- Bootstrap JS -->
+ <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>          
+        <script src="jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="/script.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="node_modules/bootstrap/scss/_carousel.scss">
+        <link href="/style.css" rel="stylesheet" />
+      
+<style>
+@media (min-width: 768px) {
+  /* show 4 items */
+  .carousel-inner .active,
+  .carousel-inner .active + .carousel-item,
+  .carousel-inner .active + .carousel-item + .carousel-item,
+  .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+   {
+    display: block;
+  }
+
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+  {
+    transition: none;
+  }
+
+  .carousel-inner .carousel-item-next,
+  .carousel-inner .carousel-item-prev {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+    position: absolute;
+    top: 0;
+    right: -16.6667%;
+    z-index: -1;
+    display: block;
+    visibility: visible;
+  }
+
+  /* left or forward direction */
+  .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+  .carousel-item-next.carousel-item-left + .carousel-item,
+  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item, 
+  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+  {
+    position: relative;
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  /* farthest right hidden item must be abso position for animations */
+  .carousel-inner .carousel-item-prev.carousel-item-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    visibility: visible;
+  }
+
+  /* right or prev direction */
+  .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+  .carousel-item-prev.carousel-item-right + .carousel-item,
+  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item,
+  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item
+ {
+    position: relative;
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+    display: block;
+    visibility: visible;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    width: 10% !important;
+  }
+}
+.card {
+  background-color: #161616 !important;
+  color: cornsilk !important;
+}
+
+</style>
+<script>
+    $(document).ready(function() {
+  $("#myCarousel").on("slide.bs.carousel", function(e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 6;
+    var totalItems = $(".carousel-item").length;
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $(".carousel-item")
+            .eq(i)
+            .appendTo(".carousel-inner");
+        } else {
+          $(".carousel-item")
+            .eq(0)
+            .appendTo($(this).find(".carousel-inner"));
+        }
+      }
+    }
+  });
+});
+
+</script>
+    </head>
+
+    <body>
+        <!-- Remove these comments before using -->
+        <br><br><br>
+  <div class="container-fluid">
+    <div id="myCarousel" class="carousel slide" >
+      <div class="carousel-inner row w-100 mx-auto">
+        <div class="carousel-item col-md-2 active">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 1</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 2</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 3</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 4</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 5</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-secondary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 6</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 7</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" style="width: 7% !important;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next" style="width: 7% !important;">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div id="myCarousel" class="carousel slide" >
+      <div class="carousel-inner row w-100 mx-auto">
+        <div class="carousel-item col-md-2 active">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 1</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 2</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 3</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 4</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 5</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-secondary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 6</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item col-md-2">
+          <div class="card">
+            <img class="card-img-top img-fluid" src="Pics/bg-main-content.png" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">Title 7</h4>
+              <p class="card-text">Dimension</p>
+              <p class="card-text">Material</p>
+              <a href="#" class="btn btn-primary">Avail Artwork</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" style="width: 7% !important;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next" style="width: 7% !important;">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+
+    </body>
+</html>
